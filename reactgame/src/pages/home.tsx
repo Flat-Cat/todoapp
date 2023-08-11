@@ -20,7 +20,7 @@ function Home() {
                         <div className="column is-6 py-0">
 
                             <h2 className="title is-2">
-                                Hier ensteht ein Spiel
+                                Hier entsteht etwas...
                             </h2>
 
                             <h5 className="subtitle is-5">

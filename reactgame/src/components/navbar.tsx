@@ -32,7 +32,7 @@ function Navbar(_props: navbarProps) {
 
           <Link className="navbar-item" to="/home">Home</Link>
           <Link className="navbar-item" to="/lexicon">Lexicon</Link>
-          <Link className="navbar-item" to="/game">The game</Link>
+          <Link className="navbar-item" to="/todo">To-Do List</Link>
 
         </div>
       </div>
