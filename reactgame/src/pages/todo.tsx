@@ -8,6 +8,11 @@ function Todo() {
     const [todoList, setTodoList] = useState<string[]>([]);
     const [todo, setTodo] = useState("");
 
+    // hier weiter machen
+    // const onClear = () => {
+    //     SetTodo("");};
+
+    console.log(setTodo)
     useEffect(() => {
 //        console.log(todoList);
       }, //[todoList]
@@ -23,13 +28,11 @@ function Todo() {
         if (e.code === "Enter") {
             
             const value = target.value;
-
-//            setTodo("")
-            setTodoList([...todoList, value])
-//  ... = spread operator == 2 arrays werden zusammengefügt
+            setTodoList([...todoList, value]);
+            
+//  ... = spread operator == 2 arrays werden zusammengefügt#
 
         }
-        
     };
     
 
@@ -40,11 +43,10 @@ function Todo() {
                 <div className="container px-4">
                     <div className="columns my-0 ">
 
-{/*__________Input Todo: das TARGET_________*/}
-
                         <div className="control pl-6 pr-6 pb-6 pt-6 has-text-left">
                             <div className="is-size-6">My Todo:</div>
 
+{/*__________Input Todo: das TARGET_________*/}
                             <input
                                 className="input"
                                 name="todo"
@@ -56,8 +58,9 @@ function Todo() {
                             </input>
 
                             <ul className="has-left">
-                                {todoList.map((todo, index) => <li key={index}>{index +1}. {todo}</li>)}
+                                {todoList.map((todo, index) => <li key={index}>{index +1}. {todo}</li>)}  
                             </ul>
+                            
 {/* todo ohne klammer = ein param. todo in klammern (todo) kann nun 2 parameter geben, da ein array natürlich noch ein index besitzt */}
                         </div>
                     </div>
@@ -69,3 +72,7 @@ function Todo() {
 
 
 export default Todo;
+
+function setValue(arg0: string) {
+    throw new Error("Function not implemented.");
+}
