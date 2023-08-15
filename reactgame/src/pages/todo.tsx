@@ -5,12 +5,13 @@ import { KeyboardEvent } from "react";
 function Todo() {
 
 //[State: aktueller wert, setter: Funktion um diesen zu ändern]
-    const [todoList, setTodoList] = useState([""] );
+    const [todoList, setTodoList] = useState<string[]>([]);
     const [todo, setTodo] = useState("");
 
     useEffect(() => {
-        console.log(todoList);
-      }, [todoList]);
+//        console.log(todoList);
+      }, //[todoList]
+    );
     
 //Eingabeänderung behandeln:
     const handleInputChange = function (e: KeyboardEvent<HTMLInputElement>) {
@@ -23,9 +24,8 @@ function Todo() {
             
             const value = target.value;
 
-            setTodo("")
+//            setTodo("")
             setTodoList([...todoList, value])
-
 //  ... = spread operator == 2 arrays werden zusammengefügt
 
         }
@@ -56,7 +56,7 @@ function Todo() {
                             </input>
 
                             <ul className="has-left">
-                                {todoList.map((todo, index) => <li key={index}>{index}. {todo}</li>)}
+                                {todoList.map((todo, index) => <li key={index}>{index +1}. {todo}</li>)}
                             </ul>
 {/* todo ohne klammer = ein param. todo in klammern (todo) kann nun 2 parameter geben, da ein array natürlich noch ein index besitzt */}
                         </div>
