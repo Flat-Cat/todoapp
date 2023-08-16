@@ -7,7 +7,7 @@ function Todo() {
     const [todoList, setTodoList] = useState<string[]>([]);
     const [todo, setTodo] = useState("");
 
-//_____________________________Eingabeänderung behandeln___________________________________________________
+    //_____________________________Eingabeänderung behandeln___________________________________________________
     const handleInputChange = function (e: KeyboardEvent<HTMLInputElement>) {
 
         const target = e.target as HTMLInputElement;
@@ -16,15 +16,15 @@ function Todo() {
             const value = target.value;
             setTodoList([...todoList, value]);
             setTodo("")
-//  ... = spread operator == 2 arrays werden zusammengefügt#
+            //  ... = spread operator == 2 arrays werden zusammengefügt#
         }
     };
-//__________________________________________changeInput___________________________________________________
-    const changeInput = function (e: ChangeEvent <HTMLInputElement>) {
+    //__________________________________________changeInput___________________________________________________
+    const changeInput = function (e: ChangeEvent<HTMLInputElement>) {
         const target = e.target as HTMLInputElement;
         setTodo(target.value);
     };
-//_______________________________return___________________________________________________________________
+    //_______________________________return___________________________________________________________________
     return (
 
         <div className="Todo ">
@@ -35,7 +35,7 @@ function Todo() {
                         <div className="control pl-6 pr-6 pb-6 pt-6 has-text-left">
                             <div className="is-size-6">My Todo:</div>
 
-{/*__________Input Todo: das TARGET_________*/}
+                            {/*__________Input Todo: das TARGET_________*/}
                             <input
                                 className="input"
                                 name="todo"
@@ -48,10 +48,15 @@ function Todo() {
                             </input>
 
                             <ul className="has-left">
-                                {todoList.map((todo, index) => <li key={index}>{index +1}. {todo}</li>)}  
+                                {todoList.map((todo, index) => (
+                                    <li key={index}>
+                                        {index + 1}. {todo}
+                                        <button className="delete is-medium has-right"></button>
+                                    </li>
+                                ))}
                             </ul>
-                            
-{/* todo ohne klammer = ein param. todo in klammern (todo) kann nun 2 parameter geben, da ein array natürlich noch ein index besitzt */}
+
+                            {/* todo ohne klammer = ein param. todo in klammern (todo) kann nun 2 parameter geben, da ein array natürlich noch ein index besitzt */}
                         </div>
                     </div>
                 </div>
