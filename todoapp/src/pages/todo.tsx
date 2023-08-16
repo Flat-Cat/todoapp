@@ -1,41 +1,30 @@
 import "./todo.scss";
-import { useState, useEffect } from "react";
+import { useState, ChangeEvent } from "react";
 import { KeyboardEvent } from "react";
 
 function Todo() {
 
-//[State: aktueller wert, setter: Funktion um diesen zu ändern]
     const [todoList, setTodoList] = useState<string[]>([]);
     const [todo, setTodo] = useState("");
 
-    // hier weiter machen
-    // const onClear = () => {
-    //     SetTodo("");};
-
-    console.log(setTodo)
-    useEffect(() => {
-//        console.log(todoList);
-      }, //[todoList]
-    );
-    
-//Eingabeänderung behandeln:
+//_____________________________Eingabeänderung behandeln___________________________________________________
     const handleInputChange = function (e: KeyboardEvent<HTMLInputElement>) {
 
         const target = e.target as HTMLInputElement;
 
-        setTodo(target.value);
-//        console.log(e.code) 
         if (e.code === "Enter") {
-            
             const value = target.value;
             setTodoList([...todoList, value]);
-            
+            setTodo("")
 //  ... = spread operator == 2 arrays werden zusammengefügt#
-
         }
     };
-    
-
+//__________________________________________changeInput___________________________________________________
+    const changeInput = function (e: ChangeEvent <HTMLInputElement>) {
+        const target = e.target as HTMLInputElement;
+        setTodo(target.value);
+    };
+//_______________________________return___________________________________________________________________
     return (
 
         <div className="Todo ">
@@ -51,10 +40,11 @@ function Todo() {
                                 className="input"
                                 name="todo"
                                 id="todo"
-                                type="text "
+                                type="text"
                                 placeholder="Write your To-do here..."
-                                defaultValue={todo}
-                                onKeyDown={handleInputChange}>
+                                value={todo}
+                                onKeyDown={handleInputChange}
+                                onInput={changeInput}>
                             </input>
 
                             <ul className="has-left">
@@ -72,7 +62,3 @@ function Todo() {
 
 
 export default Todo;
-
-function setValue(arg0: string) {
-    throw new Error("Function not implemented.");
-}
