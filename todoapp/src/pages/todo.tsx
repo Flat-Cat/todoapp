@@ -29,9 +29,13 @@ function Todo() {
     };
     //______________________________________deleteButton_________________________________________________________
     const HandleDeleteButton = function (index: number) {
-        console.log(index)
+        
+        const deleteThis = [...todoList]
+        //_[...TODOLIST]_= kopie erstellen des arrays
+       deleteThis.splice (index, 1);
 
-       setTodoList(todoList.splice(index, 1));
+       setTodoList(deleteThis)
+       
         //_MAP_ kann nur eine liste zurück geben die gleichlang ist. 
         //_hat seinen eigenen Scope
         //_SPLICE_ gibt ein neues array 
