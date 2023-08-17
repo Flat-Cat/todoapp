@@ -29,18 +29,18 @@ function Todo() {
     };
     //______________________________________deleteButton_________________________________________________________
     const HandleDeleteButton = function (index: number) {
-        
-        const deleteThis = [...todoList]
-        //_[...TODOLIST]_= kopie erstellen des arrays
-       deleteThis.splice (index, 1);
 
-       setTodoList(deleteThis)
-       
+        const newTodoList = [...todoList]
+        //_[...TODOLIST]_= kopie erstellen des arrays
+        newTodoList.splice(index, 1);
+
+        setTodoList(newTodoList)
+
         //_MAP_ kann nur eine liste zurück geben die gleichlang ist. 
         //_hat seinen eigenen Scope
         //_SPLICE_ gibt ein neues array 
-       
-    } 
+
+    }
     //_______________________________return___________________________________________________________________
     return (
         <div className="Todo ">
@@ -62,17 +62,22 @@ function Todo() {
                             </input>
 
                             <ul className="has-left">
-                                {todoList.map((todo, index) => (<li key={index}>{index + 1}. {todo}
+                                {/* Erzeugt eine nummerierte Liste der To-Dos */}
+                                {todoList.map((todo, index) => (
+                                    <li key={index}>{index + 1}. {todo}
+                                        {/* key={index}: Property, die React erwartet, um Elemente der Liste eindeutig zu identifizieren. 
+                                            Der Index wird in diesem Fall als Schlüssel verwendet.*/}
+                                            
+                                        <div className="buttons is-right">
+                                            <button
+                                                key={index}
+                                                id="deleteButton"
+                                                className="delete is-medium"
+                                                onClick={() => HandleDeleteButton(index)}>
+                                            </button>
+                                        </div>
 
-                                    <div className="buttons is-right">
-                                        <button
-                                            key={index}
-                                            id="deleteButton"
-                                            className="delete is-medium"
-                                            onClick={() => HandleDeleteButton(index)}>
-                                        </button>
-                                    </div>
-                                </li>))}
+                                    </li>))}
 
                             </ul>
 
