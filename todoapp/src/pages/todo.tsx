@@ -4,10 +4,10 @@ import { KeyboardEvent } from "react";
 
 function Todo() {
 
-    const [todoList, setTodoList] = useState<string[]>([]);
     const [todo, setTodo] = useState("");
+    const [todoList, setTodoList] = useState<string[]>([]);
 
-    //_____________________________Eingabeänderung behandeln___________________________________________________
+    //_____________________________behandeln_der_eingabeänderung__________________________________________________
     const handleInputChange = function (e: KeyboardEvent<HTMLInputElement>) {
 
         const target = e.target as HTMLInputElement;
@@ -15,15 +15,28 @@ function Todo() {
         if (e.code === "Enter") {
             const value = target.value;
             setTodoList([...todoList, value]);
+            // todolist ist leer
             setTodo("")
             //  ... = spread operator = 2 arrays werden zusammengefügt
         }
     };
     //________________________________changeInput_____________________________________________________________
     const changeInput = function (e: ChangeEvent<HTMLInputElement>) {
+
         const target = e.target as HTMLInputElement;
+
         setTodo(target.value);
     };
+    //______________________________________deleteButton_________________________________________________________
+    const HandleDeleteButton = function (index: number) {
+        console.log(index)
+
+       setTodoList(todoList.splice(index, 1));
+        //_MAP_ kann nur eine liste zurück geben die gleichlang ist. 
+        //_hat seinen eigenen Scope
+        //_SPLICE_ gibt ein neues array 
+       
+    } 
     //_______________________________return___________________________________________________________________
     return (
         <div className="Todo ">
@@ -37,8 +50,6 @@ function Todo() {
                             {/*_____________________Input Todo: das TARGET_______________________*/}
                             <input
                                 className="input"
-                                name="todo"
-                                id="todo"
                                 type="text"
                                 placeholder="Write your To-do here..."
                                 value={todo}
@@ -47,10 +58,15 @@ function Todo() {
                             </input>
 
                             <ul className="has-left">
-                                {todoList.map((todo, index) => (<li key={index}> {index + 1}. {todo}
-                                    
+                                {todoList.map((todo, index) => (<li key={index}>{index + 1}. {todo}
+
                                     <div className="buttons is-right">
-                                        <button className="delete is-medium"></button>
+                                        <button
+                                            key={index}
+                                            id="deleteButton"
+                                            className="delete is-medium"
+                                            onClick={() => HandleDeleteButton(index)}>
+                                        </button>
                                     </div>
                                 </li>))}
 
@@ -64,6 +80,4 @@ function Todo() {
         </div>
     );
 }
-
-
 export default Todo;
