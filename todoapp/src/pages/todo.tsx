@@ -62,12 +62,12 @@ function Todo() {
                             </input>
 
                             <ul className="has-left">
-                                {/* Erzeugt eine nummerierte Liste der To-Dos */}
+                                {/* MAP-ITERATION:Erzeugt eine nummerierte Liste <LI> der To-Dos */}
                                 {todoList.map((todo, index) => (
                                     <li key={index}>{index + 1}. {todo}
                                         {/* key={index}: Property, die React erwartet, um Elemente der Liste eindeutig zu identifizieren. 
                                             Der Index wird in diesem Fall als Schlüssel verwendet.*/}
-                                            
+
                                         <div className="buttons is-right">
                                             <button
                                                 key={index}
